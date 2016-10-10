@@ -1,0 +1,24 @@
+@model IEnumerable<FileStorageMVC.Tag>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+    </head>
+<body>
+    <h1>Tags</h1>
+<table>
+    <tr>
+        <th>Tag</th>
+        <th>Delete</th>
+    </tr>
+    @foreach(var tag in Model)
+    {
+        <tr>
+            <td>@tag.Value</td>
+            <td>@Html.ActionLink("Delete", "Delete", @tag)</td>
+        </tr>    
+    }
+</table>
+</body>
+</html>

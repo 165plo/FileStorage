@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        </style>
+    </head>
+    <body>
+        <h1>Add new file</h1>
+@using (Html.BeginForm("Add", "File", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+    <input type="file" name="FileUpload" />
+    <input type="submit" name="Submit" id="Submit" value="Upload" />
+}    </body>
+</html>

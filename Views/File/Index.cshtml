@@ -1,0 +1,26 @@
+@model IEnumerable<FileStorageMVC.FileViewModel>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="~/Content/Site.css">
+    </head>
+<body>
+    <h1>File's Upladed</h1>
+<table>
+    <tr>
+        <th>Filename</th>
+        <th>Tags</th>
+        <th>Delete</th>
+    </tr>
+    @foreach(var file in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(@file.Name, "Download", "File", new {@file.Key}, null)</td>
+            <td>@file.Tags</td>
+            <td>@Html.ActionLink("Delete", "Delete", "File", new {@file.Key}, null)</td>
+        </tr>    
+    }
+</table>
+</body>
+</html>
