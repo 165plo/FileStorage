@@ -10,7 +10,7 @@ namespace FileStorageMVC
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main(string[] args) 
         {
            var config = new ConfigurationBuilder()
                 .AddCommandLine(args)
@@ -21,11 +21,13 @@ namespace FileStorageMVC
                 .UseConfiguration(config)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls("http://*:4000") 
                 //.UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
 
             host.Run();
+            
         }
     }
 }
