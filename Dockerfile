@@ -1,4 +1,13 @@
-FROM microsoft/dotnet:latest
-COPY bin/Debug/netcoreapp1.0/publish/ /root/
+FROM microsoft/dotnet:1.0.0-preview2-sdk
+
+COPY . /app
+
+WORKDIR /app
+
+RUN ["dotnet", "restore"]
+
+RUN ["dotnet", "build"]
+
 EXPOSE 4000/tcp
-ENTRYPOINT dotnet /root/FileStorageMVC.dll
+
+ENTRYPOINT ["dotnet", "run"]

@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,8 +22,15 @@ namespace FileStorageMVC
             services.AddMvc();
 
             services.AddLogging();
-
-            services.AddDbContext<FileContext>(options=>options.UseSqlite("Filename=./FileStorage.db"));
+            var dir = System.IO.Directory.GetCurrentDirectory();
+            if(System.IO.File.Exists("./db/FileStorage.db"))
+            {
+                services.AddDbContext<FileContext>(options=>options.UseSqlite("Filename=./db/FileStorage.db"));
+            }
+            else
+            {
+                services.AddDbContext<FileContext>(options=>options.UseSqlite("Filename=./FileStorage.db"));
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

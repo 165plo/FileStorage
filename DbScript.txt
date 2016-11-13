@@ -1,0 +1,17 @@
+CREATE TABLE "Files" (
+    "Key" INTEGER NOT NULL CONSTRAINT "PK_Files" PRIMARY KEY AUTOINCREMENT,
+    "Deleted" INTEGER NOT NULL,
+    "MarkedDeleted" TEXT NOT NULL,
+    "Name" TEXT,
+    "Payload" BLOB
+);
+
+CREATE TABLE "Tags" (
+    "Key" INTEGER NOT NULL CONSTRAINT "PK_Tags" PRIMARY KEY AUTOINCREMENT,
+    "FileKey" INTEGER,
+    "Value" TEXT,
+    CONSTRAINT "FK_Tags_Files_FileKey" FOREIGN KEY ("FileKey") REFERENCES "Files" ("Key") ON DELETE RESTRICT
+);
+
+CREATE INDEX "IX_Tags_FileKey" ON "Tags" ("FileKey");
+

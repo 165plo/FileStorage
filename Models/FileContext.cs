@@ -12,5 +12,5 @@ namespace FileStorageMVC.Models
         public DbSet<File> Files { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
-    }
+    } 
 }

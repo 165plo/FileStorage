@@ -81,5 +81,12 @@ namespace FileStorageMVC
             var dbFile = _fileContext.Files.First(x=>x.Key == Key);
             return File(dbFile.Payload, "application/octet-stream", dbFile.Name);
         }
+
+        public IActionResult Edit(int Key)
+        {
+            var dbFile = _fileContext.Files.First(x=>x.Key == Key);
+            //return File(dbFile.Payload, "application/octet-stream", dbFile.Name);
+            return View(dbFile.ToViewModel());
+        }
     }
 }
