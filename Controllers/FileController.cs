@@ -73,7 +73,9 @@ namespace FileStorageMVC
 
         public IActionResult Index()
         {
-            return View(_fileContext.Files.Select(x=>x.ToViewModel()));
+            var files = _fileContext.Files.ToList();
+            files.Sort(FileStorageMVC.File.CompareByName);
+            return View(files.Select(x=>x.ToViewModel()));
         }
 
         public IActionResult Download(int Key)
@@ -84,9 +86,16 @@ namespace FileStorageMVC
 
         public IActionResult Edit(int Key)
         {
+            if(Key==0)
+                return null;
             var dbFile = _fileContext.Files.First(x=>x.Key == Key);
             //return File(dbFile.Payload, "application/octet-stream", dbFile.Name);
-            return View(dbFile.ToViewModel());
+            return View(new EditViewModel
+            {
+                Key = dbFile.Key, 
+                Name = dbFile.Name, 
+                SelectTags = _fileContext.Tags.Select(x=>x.Value).ToList() 
+            });
         }
     }
 }

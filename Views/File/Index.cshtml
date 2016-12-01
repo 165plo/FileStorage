@@ -35,6 +35,15 @@
 				</tr>
 				@foreach(var file in Model) {
 				<tr>
+					<td>@{
+						if(file.File != null)
+						{
+							var base64 = Convert.ToBase64String(file.File);
+							var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+							<img src="@imgSrc" />
+						}
+					}
+					</td>
 					<td>@Html.ActionLink(@file.Name, "Download", "File", new {@file.Key}, null)</td>
 					<td>@file.Tags</td>
 					<td>@Html.ActionLink("Edit", "Edit", "File", new {@file.Key}, null)</td>

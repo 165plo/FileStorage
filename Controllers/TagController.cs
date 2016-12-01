@@ -43,5 +43,10 @@ namespace FileStorageMVC
             return Redirect("Index");
         }
 
+        public IActionResult GetTags()
+        {
+            return View(_fileContext.Tags);
+        }
+
     }
 }
